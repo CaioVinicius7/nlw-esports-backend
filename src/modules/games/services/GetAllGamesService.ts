@@ -1,6 +1,5 @@
+import { prisma } from "@database/client";
 import { Game } from "@prisma/client";
-
-import { prisma } from "../../../database/client";
 
 class GetAllGamesService {
 	async execute(): Promise<Game[]> {

@@ -4,7 +4,10 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"baseUrl": "./src",
-		"paths": {},
+		"paths": {
+			"@modules/*": ["./modules/*"],
+			"@database/*": ["./database/*"]
+		},
 		"rootDir": "./src",
 		"outDir": "./dist",
 		"esModuleInterop": true,
