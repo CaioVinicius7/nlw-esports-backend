@@ -8,9 +8,9 @@ class GetDiscordByAdController {
 
 		const getDiscordByAdService = new GetDiscordByAdService();
 
-		const result = getDiscordByAdService.execute(adId);
+		const result = await getDiscordByAdService.execute(adId);
 
-		return res.status(200).json(adId);
+		return res.status(200).json(result);
 	}
 }
 
