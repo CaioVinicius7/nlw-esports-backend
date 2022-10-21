@@ -1,4 +1,5 @@
 import { prisma } from "@database/client";
+import { convertMinutesToHourString } from "@utils/convert-minutes-to-hour-string";
 
 interface IResponse {
 	id: string;
@@ -6,8 +7,8 @@ interface IResponse {
 	weekDays: string[];
 	useVoiceChannel: boolean;
 	yearsPlaying: number;
-	hourStart: number;
-	hourEnd: number;
+	hourStart: string;
+	hourEnd: string;
 }
 
 class ListAdsByGameService {
@@ -33,7 +34,9 @@ class ListAdsByGameService {
 		return ads.map((ad) => {
 			return {
 				...ad,
-				weekDays: ad.weekDays.split(",")
+				weekDays: ad.weekDays.split(","),
+				hourStart: convertMinutesToHourString(ad.hourStart),
+				hourEnd: convertMinutesToHourString(ad.hourEnd)
 			};
 		});
 	}
