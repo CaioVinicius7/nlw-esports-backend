@@ -8,9 +8,9 @@ class ListAdsByGameController {
 
 		const listAdsByGameService = new ListAdsByGameService();
 
-		const result = listAdsByGameService.execute(gameId);
+		const result = await listAdsByGameService.execute(gameId);
 
-		return res.status(200).json(gameId);
+		return res.status(200).json(result);
 	}
 }
 
