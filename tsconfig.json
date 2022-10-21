@@ -6,7 +6,8 @@
 		"baseUrl": "./src",
 		"paths": {
 			"@modules/*": ["./modules/*"],
-			"@database/*": ["./database/*"]
+			"@database/*": ["./database/*"],
+			"@utils/*": ["./utils/*"]
 		},
 		"rootDir": "./src",
 		"outDir": "./dist",

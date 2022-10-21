@@ -16,8 +16,7 @@ const router = Router();
 
 router.get("/games", getAllGamesController.handle);
 router.get("/games/:id/ads", listAdsByGameController.handle);
-
-router.post("/ads", createAdController.handle);
+router.post("/games/:id/ads", createAdController.handle);
 router.post("/ads/:id/discord", getDiscordByAdController.handle);
 
 export { router };
