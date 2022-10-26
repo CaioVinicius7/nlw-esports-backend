@@ -1,0 +1,289 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "NLW eSports",
+		"description": "Documentação da API desenvolvida durante a NLW eSports",
+		"version": "1.0.0",
+		"contact": {
+			"email": "caio1525pereira@gmail.com"
+		}
+	},
+	"paths": {
+		"/games": {
+			"get": {
+				"tags": ["Games"],
+				"summary": "Listagem de games",
+				"description": "Listagem de todos os games cadastrados",
+				"responses": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/gamesResponse200"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/games/{id}/ads": {
+			"post": {
+				"tags": ["Ads"],
+				"summary": "Cadastro de anúncio",
+				"description": "Cadastro de novo anúncio de busca por duo",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Game Id",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/definitions/createAdRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/createAdResponse201"
+								}
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"tags": ["Ads"],
+				"summary": "Listagem de anúncios de determinado game",
+				"description": "Listagem de anúncios de determinado game filtrado pelo id do game",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Game Id",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/getAdsResponse200"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ads/{id}/discord": {
+			"get": {
+				"tags": ["Ads"],
+				"summary": "Exibição de discord de determinado anúncio",
+				"description": "Exibição de discord de determinado anúncio filtrado por id",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "Ad Id",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "success",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"properties": {
+										"discord": {
+											"type": "string",
+											"example": "username#0000"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"gamesResponse200": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"title": {
+						"type": "string",
+						"example": "League of Legends"
+					},
+					"banner": {
+						"type": "string",
+						"example": "https://static-cdn.jtvnw.net/ttv-boxart/21779-285x380.jpg"
+					},
+					"_count": {
+						"type": "object",
+						"properties": {
+							"ads": {
+								"type": "number",
+								"example": 2
+							}
+						}
+					}
+				}
+			}
+		},
+		"createAdRequest": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"example": "nickname"
+				},
+				"yearsPlaying": {
+					"type": "number",
+					"example": 2
+				},
+				"discord": {
+					"type": "string",
+					"example": "username#0000"
+				},
+				"weekDays": {
+					"type": "array",
+					"items": {
+						"type": "number",
+						"example": [0, 5, 6]
+					}
+				},
+				"hourStart": {
+					"type": "string",
+					"example": "18:00"
+				},
+				"hourEnd": {
+					"type": "string",
+					"example": "22:00"
+				},
+				"useVoiceChannel": {
+					"type": "boolean",
+					"example": true
+				}
+			}
+		},
+		"createAdResponse201": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
+				"gameId": {
+					"type": "string",
+					"format": "uuid"
+				},
+				"name": {
+					"type": "string",
+					"example": "nickname"
+				},
+				"yearsPlaying": {
+					"type": "number",
+					"example": 1
+				},
+				"discord": {
+					"type": "number",
+					"example": 1
+				},
+				"weekDays": {
+					"type": "string",
+					"example": "0, 5, 6"
+				},
+				"hourStart": {
+					"type": "number",
+					"example": 1080
+				},
+				"hourEnd": {
+					"type": "number",
+					"example": 1320
+				},
+				"useVoiceChannel": {
+					"type": "boolean",
+					"example": true
+				},
+				"createdAt": {
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+		"getAdsResponse200": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"example": "nickname"
+					},
+					"weekDays": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"example": ["0", "5", "6"]
+						}
+					},
+					"useVoiceChannel": {
+						"type": "boolean",
+						"example": true
+					},
+					"yearsPlaying": {
+						"type": "number",
+						"example": 1
+					},
+					"hourStart": {
+						"type": "string",
+						"example": "18:00"
+					},
+					"hourEnd": {
+						"type": "string",
+						"example": "22:00"
+					}
+				}
+			}
+		}
+	}
+}
