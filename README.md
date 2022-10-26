@@ -7,7 +7,7 @@
 Esse é o projeto desenvolvido durante a NLW eSports da [Rocketseat](https://www.rocketseat.com.br/), o projeto se trata de uma API onde o usuário pode ter acesso aos games pré definidos, anúncios de busca por duo em determinado game e também pode cadastrar novos anúncios de busca por duo referentes
 ao game desejado e em caso de match com algum duo pode visualizar o usuário do discord de seu futuro duo.
 
-## Quais são as funcionalidades desse sistema?
+## ✨ Quais são as funcionalidades desse sistema?
 
 O sistema conta com as seguintes funcionalidades:
 
